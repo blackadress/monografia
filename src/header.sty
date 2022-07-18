@@ -1,0 +1,41 @@
+\usepackage{geometry}
+\usepackage[spanish]{babel}
+\usepackage{graphicx} 
+\usepackage{fontspec}
+  \setmainfont{LiberationSans}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\usepackage[backend=biber,style=apa,citestyle = apa, sorting = nyt]{biblatex}
+% \usepackage{apacite}
+\addbibresource{refs.bib}
+
+\geometry{margin=1in}
+
+% \AtBeginDocument{
+%   \renewcommand{\contentsname}{CONTENIDOS}
+%  }
+
+\newcommand*{\rom}[1]{
+  \MakeUppercase{\expandafter\@slowromancap\romannumeral #1@}
+}
+
+\newcommand{\tituloIni}[1]{
+  \begingroup
+    \fontsize{14pt}{0pt}\selectfont
+    \begin{center}
+      \bfseries{\MakeUppercase{#1}}
+    \end{center}
+  \endgroup
+  \addcontentsline{toc}{section}{\numberline{}#1}
+}
+
+\newcommand{\mysection}[2]{
+  \setcounter{section}{#1}
+  \setcounter{subsection}{0}
+  \setcounter{subsubsection}{0}
+  {\bfseries\large\centerline{CAPÍTULO \rom{#1}}}
+  {\bfseries\large\centerline{#2}}
+  \addtocontents{toc}{{\protect\centering\bfseries{CAPÍTULO} \rom{#1}\par #2\par}}
+}
