@@ -1,4 +1,5 @@
 \usepackage{geometry}
+\usepackage{hyphenat}
 \usepackage[spanish]{babel}
 \usepackage{graphicx} 
 \usepackage{fontspec}
@@ -7,15 +8,20 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 
-\usepackage[backend=biber,style=apa,citestyle = apa, sorting = nyt]{biblatex}
-% \usepackage{apacite}
-\addbibresource{refs.bib}
+% \usepackage[backend=biber,style=apa,citestyle = apa, sorting = nyt]{biblatex}
+\usepackage{apacite}
 
+% \addbibresource{refs.bib}
+
+\setlength{\emergencystretch}{3pt}
 \geometry{margin=1in}
 
 % \AtBeginDocument{
 %   \renewcommand{\contentsname}{CONTENIDOS}
 %  }
+
+\useshorthands{~}
+\defineshorthand{~-}{\hyp{}}
 
 \newcommand*{\rom}[1]{
   \MakeUppercase{\expandafter\@slowromancap\romannumeral #1@}
