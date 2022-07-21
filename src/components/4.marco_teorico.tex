@@ -6,41 +6,61 @@
 
 Según \cite{dmitry2014micro} una aplicación monolítica puede ser
 
-\subsubsection{Ventajas de una Arquitectura de Microservicios}
-\subsubsection{Desventajas de una Arquitectura de Microservicios}
+\subsubsection{Ventajas de una Arquitectura Monolítica}
+
+\subsubsection{Desventajas de una Arquitectura de Monolítica}
 
 \subsection{Arquitectura de Microservicios}
 
 De acuerdo con \cite{dmitry2014micro}, un microservicio es un servicio ligero e independiente que
-realiza funciones únicas y colabora con otros servicios similares utilizando una interface bien definida.
+realiza funciones únicas y colabora con otros servicios similares utilizando una interfaz bien definida.
 Una arquitectura basada en microservicios es un método para desarrollar una aplicación como un conjunto
 de servicios pequeños e independientes. Cada uno de los servicios está siendo ejecutado bajo un
 proceso independiente propio. Dichos servicios pueden comunicarse mediante mecanismos ligeros (usualmente
-bajo HTTP). Servicios como estos pueden ser deplegados completamente independientes los unos de los otros.
+bajo HTTP). Servicios como estos pueden ser desplegados completamente independientes los unos de los otros.
 Los servicios pueden estar escritos en diferentes lenguajes de programación, diferentes paradigmas,
 usar sus propios modelos de datos, etcétera.
 
-\cite{alshuqayran2016systematic} definen la arquitectura de microservicios como el estilo de arquitectura
+Por su parte \cite{alshuqayran2016systematic} definen la arquitectura de microservicios como el estilo de arquitectura
 que pone énfasis en dividir el sistema en servicios pequeños y ligeros que están construidos para
 llevar a cabo una función de negocio de manera muy cohesiva.
 
-\cite{newman2019monolith} indica que para definir una arquitectura de microservicios primero tenemos que
+Mientras que \cite{newman2019monolith} indica que para definir una arquitectura de microservicios primero tenemos que
 definir a los microservicios. Los microservicios son un conjunto de servicios independientemente
 desplegables modelados alrededor de un dominio de negocio. Se comunican entre ellos mediante redes
 y como una elección de arquitectura ofrecen varias opciones para resolver los problemas que un
 equipo u organización pueden enfrentar. Por lo anterior indicado, se concluye que una arquitectura
-de microservicios es una arquitectura basada en multiples microservicios trabajando en colaboración.
+de microservicios es una arquitectura basada en múltiples microservicios trabajando en colaboración.
 
-En resumen una arquitectura de microservicios se usa para construir sistemas distribuidos que
+En resumen una arquitectura de microservicios está constituida por múltiples unidades que pueden ser
+desplegadas independientemente las unas de las otras. Este conjunto de servicios han sido desarrollados
+para solucionar problemas de un dominio de negocio.
 
 \subsubsection{Ventajas de una Arquitectura de Microservicios}
 \subsubsection{Desventajas de una Arquitectura de Microservicios}
 
+\subsection{Despliegue Independiente}
+De acuerdo con \cite{newman2019monolith} el despliegue independiente es la idea de que podemos
+hacer un cambio a un microservicio y desplegarlo a un ambiente de producción sin tener que utilizar
+ningún otro servicio.
+
 \subsection{Dominio de Negocio}
+Según \cite{khononov2021learning} un dominio de negocio define el principal área de actividad de
+la empresa. En general es el servicio que la empresa provee a sus clientes.
+Una empresa puede operar en múltiples dominios de negocio.
+
+Para \cite{houthoofd2010analyzing} el término "dominio de negocio" hace referencia a la intersección
+entre el lado proveedor, también llamado industria, y el lado de la demanda, también llamado cliente.
+Una arena competitiva donde empresas con productos similares se dirigen a clientes con necesidades
+similares.
+
+
 \subsection{Despliegue}
 
 \subsection{Escalabilidad}
 
 \subsection{Complejidad}
+
+\subsection{Sistema Distribuido}
 
 % \subsection{Integración continua}
