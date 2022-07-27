@@ -1,32 +1,47 @@
 \documentclass[12pt]{article}
 
-\pagenumbering{gobble}
 
 \usepackage{./src/header}
 
 \begin{document}
 
+\pagenumbering{gobble}
 \input{src/components/0.caratula}
+\newpage
 
+\begin{singlespace}
 \pagenumbering{roman}
 \setcounter{page}{2}
 \tableofcontents
+\end{singlespace}
 \newpage
 
+\raggedright
+\pagenumbering{arabic}
+\setcounter{page}{5}
+
 \input{src/components/1.introduccion}
+\newpage
 
 \input{src/components/2.justificacion}
+\newpage
 
 \input{src/components/3.objetivos}
+\newpage
 
 \input{src/components/4.marco_teorico}
+\newpage
 
 \input{src/components/5.metodologia}
+\newpage
 
 \input{src/components/6.resultados}
+\newpage
 
 \input{src/components/7.conclusiones}
+\newpage
 
 \input{src/components/8.referencias}
+\newpage
 
 \end{document}

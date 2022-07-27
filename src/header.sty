@@ -1,5 +1,6 @@
 \usepackage{geometry}
 \usepackage{hyphenat}
+\usepackage[hidelinks]{hyperref}
 \usepackage[spanish]{babel}
 \usepackage{graphicx} 
 \usepackage{fontspec}
@@ -7,20 +8,28 @@
 \usepackage{setspace}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
+% \usepackage[document]{ragged2e}
+\usepackage{doi}
 
 % \usepackage[backend=biber,style=apa,citestyle = apa, sorting = nyt]{biblatex}
 \usepackage{apacite}
 
 % \addbibresource{refs.bib}
+\usepackage{etoolbox}
+\usepackage{setspace}
+% \setstretch{2}
+\doublespacing
 
 \setlength{\emergencystretch}{3pt}
 \setlength{\parskip}{10mm}
 \setlength{\parindent}{1.27cm}
 \geometry{margin=1in}
+% \renewcommand{\baselinestretch}{2}
 
 % \AtBeginDocument{
 %   \renewcommand{\contentsname}{CONTENIDOS}
 %  }
+\AtBeginEnvironment{quote}{\par\singlespacing\small}
 
 \useshorthands{~}
 \defineshorthand{~-}{\hyp{}}
@@ -28,8 +37,6 @@
 \newcommand*{\rom}[1]{
   \MakeUppercase{\expandafter\@slowromancap\romannumeral #1@}
 }
-
-\renewcommand{\baselinestretch}{2}
 
 \newcommand{\tituloIni}[1]{
   \begingroup
