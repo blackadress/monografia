@@ -13,16 +13,8 @@
 \subsection{Protocolo de Transferencia de Hipertexto (HTTP)}
 Según \cite{goralski2017illustrated} El protocolo de transferencia de hipertexto (HTTP) es un protocolo de nivel de aplicación para sistemas de información
 distribuidos, colaborativos y de hiper-media.
-El protocolo es genérico, sin estado (\italic{stateless}) que puede ser usado para muchas tareas más allá el uso para hipertexto.
-Su extensibilidad se da por sus métodos de solicitud (\italic{request methods}), códigos de error y cabeceras.
-
-\subsection{Servicio Web}
-
-Para \cite{bruijin2006web} los servicios web son piezas de funcionalidad que son accesibles mediante la web.
-La comunicación con estos se da mediante protocolos abiertos que se definen mediante estándares internacionales.
-Diferentes clientes y aplicaciones desarrolladas en lenguajes de programación diferentes y ejecutándose
-en sistemas operativos diferentes pueden comunicarse con los servicios web que implementan
-los protocolos de comunicación.
+El protocolo es genérico, sin estado ({\it stateless}) que puede ser usado para muchas tareas más allá el uso para hipertexto.
+Su extensibilidad se da por sus métodos de solicitud ({\it request methods}), códigos de error y cabeceras.
 
 \subsection{Arquitectura de Microservicios}
 
@@ -39,6 +31,12 @@ Por su parte \cite{alshuqayran2016systematic} definen la arquitectura de microse
 que pone énfasis en dividir el sistema en servicios pequeños y ligeros que están construidos para
 llevar a cabo una función de negocio de manera muy cohesiva.
 
+Según el principio de responsabilidad única definido por \cite{martin2013clean} nos indica "juntar las
+cosas que cambian por la misma razón, y separar las cosas que cambian por razones diferentes".
+Los microservicios usan el mismo enfoque a los servicios independientes, trazando las fronteras
+de cada servicio para coincidir con las fronteras del dominio del negocio para que así
+se tengan unidades independientes y desacopladas.
+
 Mientras que \cite{newman2019monolith} indica que para definir una arquitectura de microservicios primero tenemos que
 definir a los microservicios. Los microservicios son un conjunto de servicios independientemente
 desplegables modelados alrededor de un dominio de negocio. Se comunican entre ellos mediante redes
@@ -50,27 +48,44 @@ En resumen una arquitectura de microservicios está constituida por múltiples u
 desplegadas independientemente las unas de las otras. Este conjunto de servicios han sido desarrollados
 para solucionar problemas de un dominio de negocio.
 
+\subsection{Servicio Web}
 
-\subsection{Despliegue}
+Para \cite{bruijn2006web} los servicios web son piezas de funcionalidad que son accesibles mediante la web.
+La comunicación con estos se da mediante protocolos abiertos que se definen mediante estándares internacionales.
+Diferentes clientes y aplicaciones desarrolladas en lenguajes de programación diferentes y ejecutándose
+en sistemas operativos diferentes pueden comunicarse con los servicios web que implementan
+los protocolos de comunicación.
 
-\subsection{Despliegue Independiente}
-De acuerdo con \cite{newman2019monolith} el despliegue independiente es la idea de que podemos
-hacer un cambio a un microservicio y desplegarlo a un ambiente de producción sin tener que utilizar
-ningún otro servicio.
+\subsection{Microservicios}
 
-\subsection{Dominio de Negocio}
-Según \cite{khononov2021learning} un dominio de negocio define el principal área de actividad de
-la empresa. En general es el servicio que la empresa provee a sus clientes.
-Una empresa puede operar en múltiples dominios de negocio.
+\subsubsection{Pequeños y Enfocados en Hacer una Cosa y Hacerla Bien}
 
-% Para \cite{houthoofd2010analyzing}
+Una de las características principales de los microservicios es que son {\it pequeños}, este es un
+punto de contención, ya que la definición de {\it pequeño} es problemática.
+Según \cite{newman2021building}, no podemos asignar la etiqueta de {\it pequeño} basándonos en líneas
+de código ya que diferentes lenguajes de programación son más o menos expresivos.
+Además de que los dominios de problema pueden ser tener una complejidad elevada lo cual hace imposible
+expresar su solución en pocas líneas de código.
 
+Debido a lo anterior mencionado, Newman indica que son los dueños del código (los desarrolladores)
+los encargados de definir {pequeño} según el contexto.
+Cabe mencionar que los programadores entienden intuitivamente cuando el sistema en el que están trabajando
+es {\it muy grande}.
 
-\subsection{Escalabilidad}
+Por su lado \cite{kleppmann2015kafka} menciona el cómo la filosofía UNIX influyó al diseño de la arquitectura
+de microservicios:
+\begin{itemize}
+  \item Hacer que cada programa haga una cosa y que la haga bien.
+  \item Hacer que los programas puedan trabajar juntos
+  \item Hacer que los programas puedan mantener inputs de textos, porque es una interfaz universal
+\end{itemize}
 
-\subsection{Complejidad}
+Con respecto al tercer punto, en lugar de hacer las comunicaciones mediante {\it standard input},
+los microservicios se comunican mediante HTTP.
 
-\subsection{Sistema Distribuido}
+\subsubsection{Servicio Web Autónomo}
+
+De acuerdo
 
 \subsection{Ley de Conway}
 Existen patrones en las arquitecturas utilizadas por cada organización, estas observaciones
@@ -90,5 +105,38 @@ principales, estas personas organizarán el software de manera similar.
 
 Actualmente la forma más común de agrupar personas en organizaciones de TI es en equipos multidisciplinarios
 armando equipos ágiles que tienen la responsabilidad de lanzar software de calidad lo más rápido posible.
+
+\subsection{Despliegue}
+
+\subsubsection{Despliegue Acoplado}
+\cite{newman2019monolith} menciona que el despliegue acoplado se encuentra en sistemas en los que el
+despliegue de un servicio, necesita del despliegue de otro servicio.
+Entonces, se entiende que el hacer cambios, por más minúsculos que sean, involucran a todos los módulos
+de la aplicación.
+
+\subsubsection{Despliegue Independiente}
+De acuerdo con \cite{newman2019monolith} el despliegue independiente es la idea de que podemos
+hacer un cambio a un microservicio y desplegarlo a un ambiente de producción sin tener que utilizar
+ningún otro servicio.
+En este tipo de despliegue, un cambio puede ser desplegado sin necesidad de desplegar todo el sistema,
+sino solo el módulo o servicio que sufrió el cambio.
+
+\subsection{Dominio de Negocio}
+Según \cite{khononov2021learning} un dominio de negocio define el principal área de actividad de
+la empresa. En general es el servicio que la empresa provee a sus clientes.
+Una empresa puede operar en múltiples dominios de negocio.
+
+\subsection{Acoplamiento y Cohesión}
+Según \cite{newman2019monolith} el acoplamiento es la característica de un programa que mide el cómo
+cambiar código en un lugar requiere de cambiar código en otro lugar. Por su lado la cohesión describe el cómo
+agrupamos código relacionado, en términos sencillos: "el código que cambia en conjunto, se queda junto".
+Estos dos conceptos nos hacen conscientes de las métricas que podemos seguir para tener un sistema estable.
+
+
+\subsection{Escalabilidad}
+
+\subsection{Complejidad}
+
+\subsection{Sistema Distribuido}
 
 % \subsection{Integración continua}
