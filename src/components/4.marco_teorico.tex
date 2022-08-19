@@ -18,7 +18,7 @@ distribuidos, colaborativos y de hiper-media.
 El protocolo es genérico, sin estado ({\it stateless}) que puede ser usado para muchas tareas más allá el uso para hipertexto.
 Su extensibilidad se da por sus métodos de solicitud ({\it request methods}), códigos de error y cabeceras.
 
-De acuerdo con \cite{gourley2002http} indican que el HTTP es la lengua franca del Internet moderno.
+De acuerdo con \cite{gourley2002http} el HTTP es la lengua franca del Internet moderno.
 HTTP es utilizado para enviar y recibir todo tipo de información de manera rápida, conveniente y confiable
 desde servidores web de todo el mundo hacia los navegadores en las terminales de las personas.
 El protocolo que usa HTTP para transmitir datos garantiza que la data no va a dañarse o perderse en
@@ -124,6 +124,12 @@ sencillo de solucionar.
 El acoplamiento temporal tiene que ver con el momento de ejecución y es uno de los principales
 desafíos de hacer llamadas síncronas en un entorno distribuido.
 
+De acuerdo con \cite{percival2020architecture} el acoplamiento es cuando los desarrolladores no
+pueden cambiar el componente A por miedo a romper el componente B. También indican que el
+acoplamiento a nivel local es algo bueno porque es un signo que el módulo ha sido agrupado correctamente.
+De igual manera advierten de los problemas que trae el tener acoplamiento a nivel global que trae
+consigo el incremento de los riesgos y costos de cambiar el código base.
+
 
 \subsection{Cohesión}
 
@@ -134,6 +140,7 @@ va a necesitar, sea una operación sencilla.
 Cuando la cohesión se respeta el equipo de desarrollo puede moverse rápidamente debido a que no tiene
 que buscar lógica en múltiples lugares, sino que solo en un único módulo.
 
+Mientras que \cite{percival2020architecture}
 
 \subsection{Ley de Conway y La Importancia de la Comunicación}
 
