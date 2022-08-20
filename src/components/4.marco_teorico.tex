@@ -66,6 +66,10 @@ Diferentes clientes y aplicaciones desarrolladas en lenguajes de programación d
 en sistemas operativos diferentes pueden comunicarse con los servicios web que implementan
 los protocolos de comunicación.
 
+De acuerdo con \cite{percival2020architecture} los servicios web deberían tener otra denominación para evitar
+confusiones con términos como ``capa de servicio''.
+Ellos definen a un servicio como una pieza de lógica que pertenece al dominio del modelo pero que no se encuentra
+naturalmente dentro de una entidad con estado o un objeto valor.
 
 \subsection{Microservicios}
 
@@ -140,7 +144,12 @@ va a necesitar, sea una operación sencilla.
 Cuando la cohesión se respeta el equipo de desarrollo puede moverse rápidamente debido a que no tiene
 que buscar lógica en múltiples lugares, sino que solo en un único módulo.
 
-Mientras que \cite{percival2020architecture}
+Mientras que \cite{percival2020architecture} indica que la cohesión es un indicador de que los componentes
+se apoyan entre sí, cada cual encajando como los engranajes de un reloj.
+Además de esto, alertan sobre el anti-patrón Bola de Barro: mientras la aplicación crece, si se es incapaz de
+prevenir el acoplamiento entre elementos que no tienen cohesión, el acoplamiento escalará de manera superlineal
+hasta que ya no se pueda modificar efectivamente el sistema.
+
 
 \subsection{Ley de Conway y La Importancia de la Comunicación}
 
@@ -224,6 +233,28 @@ Según \cite{khononov2021learning} un dominio de negocio define el principal ár
 la empresa. En general es el servicio que la empresa provee a sus clientes.
 Una empresa puede operar en múltiples dominios de negocio.
 
+\subsection{Diseño Guiado por el Dominio}
+
+El término ``diseño guiado por el dominio'' fue acuñado por \cite{evans2004domain}, en su trabajo
+indica los tres componentes del DDD:
+
+\begin{enumerate}[a.]
+  \item \textbf{El modelo y el núcleo del diseño se dan forma mutuamente.}
+    Es el enlace entre el modelo y la implementación que hace que el modelo sea relevante y asegura que el
+    análisis que se le hizo aplica al producto final.
+  \item \textbf{El modelo es la columna vertebral del lenguaje utilizado por todos los miembros del equipo.}
+    Debido al vínculo entre modelo e implementación, los desarrolladores pueden hablar acerca del
+    programa en este lenguaje, esto con el fin de poder hablar con los expertos del dominio sin
+    necesidad de traducción.
+  \item \textbf{El modelo es conocimiento destilado.}
+    El modelo es la forma de estructurar conocimiento del dominio acordado por el equipo.
+\end{enumerate}
+
+Según \cite{percival2020architecture} el Diseño guiado por el dominio (DDD por sus siglas en inglés)
+hace que los practicantes centren sus esfuerzos construyendo un buen modelo del dominio del negocio.
+Básicamente DDD indica que lo más importante del software es que provee un modelo útil de un problema,
+si ese modelo es correcto, entonces el software entregará valor.
+En el caso contrario, la aplicación se vuelve un obstáculo.
 
 \subsection{Escalabilidad}
 
