@@ -11,20 +11,6 @@
 % \subsubsection{Desventajas de una Arquitectura de Monolítica}
 
 
-\subsection{Protocolo de Transferencia de Hipertexto (HTTP)}
-
-Según \cite{goralski2017illustrated} el protocolo de transferencia de hipertexto (HTTP) es un protocolo de nivel de aplicación para sistemas de información
-distribuidos, colaborativos y de hiper-media.
-El protocolo es genérico, sin estado ({\it stateless}) que puede ser usado para muchas tareas más allá el uso para hipertexto.
-Su extensibilidad se da por sus métodos de solicitud ({\it request methods}), códigos de error y cabeceras.
-
-De acuerdo con \cite{gourley2002http} el HTTP es la lengua franca del Internet moderno.
-HTTP es utilizado para enviar y recibir todo tipo de información de manera rápida, conveniente y confiable
-desde servidores web de todo el mundo hacia los navegadores en las terminales de las personas.
-El protocolo que usa HTTP para transmitir datos garantiza que la data no va a dañarse o perderse en
-tránsito.
-
-
 \subsection{Arquitectura de Microservicios}
 
 De acuerdo con \cite{dmitry2014micro}, un microservicio es un servicio ligero e independiente que
@@ -70,6 +56,21 @@ De acuerdo con \cite{percival2020architecture} los servicios web deberían tener
 confusiones con términos como ``capa de servicio''.
 Ellos definen a un servicio como una pieza de lógica que pertenece al dominio del modelo pero que no se encuentra
 naturalmente dentro de una entidad con estado o un objeto valor.
+
+
+\subsection{Protocolo de Transferencia de Hipertexto (HTTP)}
+
+Según \cite{goralski2017illustrated} el protocolo de transferencia de hipertexto (HTTP) es un protocolo de nivel de aplicación para sistemas de información
+distribuidos, colaborativos y de hiper-media.
+El protocolo es genérico, sin estado ({\it stateless}) que puede ser usado para muchas tareas más allá el uso para hipertexto.
+Su extensibilidad se da por sus métodos de solicitud ({\it request methods}), códigos de error y cabeceras.
+
+De acuerdo con \cite{gourley2002http} el HTTP es la lengua franca del Internet moderno.
+HTTP es utilizado para enviar y recibir todo tipo de información de manera rápida, conveniente y confiable
+desde servidores web de todo el mundo hacia los navegadores en las terminales de las personas.
+El protocolo que usa HTTP para transmitir datos garantiza que la data no va a dañarse o perderse en
+tránsito.
+
 
 \subsection{Microservicios}
 
@@ -118,37 +119,53 @@ complejidad en el despliegue de microservicios es casi una necesidad el implemen
 DevOps (desarrollo y operaciones) para la automatización del despliegue.
 
 
-\subsection{Acoplamiento}
+\subsection{Dominio de Negocio}
 
-Según \cite{newman2019monolith} el acoplamiento es la característica de un programa que mide el cómo
-cambiar código en un lugar requiere cambiar el programa en otro lugar.
-Los dos tipos de acoplamiento más comunes son: el acoplamiento de implementación y el acoplamiento temporal.
-El acoplamiento de implementación suele darse cuando componentes comparten un flujo de datos y es el más
-sencillo de solucionar.
-El acoplamiento temporal tiene que ver con el momento de ejecución y es uno de los principales
-desafíos de hacer llamadas síncronas en un entorno distribuido.
+De acuerdo con \cite{bosselmann2014domain} para definir un dominio de negocio de manera formal,
+no existe una ontología formal adecuada para los desarrolladores de software.
+Debido a esto solo se puede definir el dominio de negocio como lo siguiente: una descripción
+del valor que una compañía ofrece a uno o varios segmentos de clientes y la arquitectura de
+la firma y su red de socios para crear, publicitar y entregar su valor y capital relacional,
+con el fin de generar flujos de ingresos rentables y sostenibles.
 
-De acuerdo con \cite{percival2020architecture} el acoplamiento es cuando los desarrolladores no
-pueden cambiar el componente A por miedo a romper el componente B. También indican que el
-acoplamiento a nivel local es algo bueno porque es un signo que el módulo ha sido agrupado correctamente.
-De igual manera advierten de los problemas que trae el tener acoplamiento a nivel global que trae
-consigo el incremento de los riesgos y costos de cambiar el código base.
+Por su parte \cite{heidari2021ontology} definen al dominio de negocio como las esferas específicas
+para las soluciones orientadas a negocios.
+El concepto se refiere a los aspectos en el mundo real de la solución ofrecida por el negocio o empresa.
+Para los desarrolladores, el dominio de negocio indica los requerimientos y los criterios de aceptación
+para el sistema a desarrollar.
+Estos criterios pueden indicar un nivel alto de segregación para diferentes áreas.
+
+Según \cite{khononov2021learning} un dominio de negocio define el principal área de actividad de
+la empresa. En general es el servicio que la empresa provee a sus clientes.
+Una empresa puede operar en múltiples dominios de negocio.
 
 
-\subsection{Cohesión}
+\subsection{Diseño Guiado por el Dominio}
 
-De acuerdo con \cite{newman2019monolith} la cohesión describe el cómo se agrupa el código relacionado,
-básicamente: {\it el código que cambia en conjunto, se agrupa}.
-El organizar el código base utilizando la cohesión hace que las modificaciones que inevitablemente
-va a necesitar, sea una operación sencilla.
-Cuando la cohesión se respeta el equipo de desarrollo puede moverse rápidamente debido a que no tiene
-que buscar lógica en múltiples lugares, sino que solo en un único módulo.
+El término ``diseño guiado por el dominio'' fue acuñado por \cite{evans2004domain}, en su trabajo
+indica los tres componentes del DDD:
 
-Mientras que \cite{percival2020architecture} indica que la cohesión es un indicador de que los componentes
-se apoyan entre sí, cada cual encajando como los engranajes de un reloj.
-Además de esto, alertan sobre el anti-patrón Bola de Barro: mientras la aplicación crece, si se es incapaz de
-prevenir el acoplamiento entre elementos que no tienen cohesión, el acoplamiento escalará de manera superlineal
-hasta que ya no se pueda modificar efectivamente el sistema.
+\begin{enumerate}[a.]
+  \item \textbf{El modelo y el núcleo del diseño se dan forma mutuamente.}
+    Es el enlace entre el modelo y la implementación que hace que el modelo sea relevante y asegura que el
+    análisis que se le hizo aplica al producto final.
+  \item \textbf{El modelo es la columna vertebral del lenguaje utilizado por todos los miembros del equipo.}
+    Debido al vínculo entre modelo e implementación, los desarrolladores pueden hablar acerca del
+    programa en este lenguaje, esto con el fin de poder hablar con los expertos del dominio sin
+    necesidad de traducción.
+  \item \textbf{El modelo es conocimiento destilado.}
+    El modelo es la forma de estructurar conocimiento del dominio acordado por el equipo.
+\end{enumerate}
+
+Prosiguiendo con su definición, Evans indica que la razón principal de ser del software es el
+resolver problemas relacionados con un dominio en específico para sus usuarios.
+Con respecto a las demás características, afirma que son subordinadas a la razón principal.
+
+Según \cite{percival2020architecture} el Diseño guiado por el dominio (DDD por sus siglas en inglés)
+hace que los practicantes centren sus esfuerzos construyendo un buen modelo del dominio del negocio.
+Básicamente DDD indica que lo más importante del software es que provee un modelo útil de un problema,
+si ese modelo es correcto, entonces el software entregará valor.
+En el caso contrario, la aplicación se vuelve un obstáculo.
 
 
 \subsection{Ley de Conway y La Importancia de la Comunicación}
@@ -182,6 +199,39 @@ organizar los equipos que trabajarán en el producto de tal manera que su comuni
 la arquitectura.
 
 
+\subsection{Acoplamiento}
+
+Según \cite{newman2019monolith} el acoplamiento es la característica de un programa que mide el cómo
+cambiar código en un lugar requiere cambiar el programa en otro lugar.
+Los dos tipos de acoplamiento más comunes son: el acoplamiento de implementación y el acoplamiento temporal.
+El acoplamiento de implementación suele darse cuando componentes comparten un flujo de datos y es el más
+sencillo de solucionar.
+El acoplamiento temporal tiene que ver con el momento de ejecución y es uno de los principales
+desafíos de hacer llamadas síncronas en un entorno distribuido.
+
+De acuerdo con \cite{percival2020architecture} el acoplamiento es cuando los desarrolladores no
+pueden cambiar el componente A por miedo a romper el componente B. También indican que el
+acoplamiento a nivel local es algo bueno porque es un signo que el módulo ha sido agrupado correctamente.
+De igual manera advierten de los problemas que trae el tener acoplamiento a nivel global que trae
+consigo el incremento de los riesgos y costos de cambiar el código base.
+
+
+\subsection{Cohesión}
+
+De acuerdo con \cite{newman2019monolith} la cohesión describe el cómo se agrupa el código relacionado,
+básicamente: {\it el código que cambia en conjunto, se agrupa}.
+El organizar el código base utilizando la cohesión hace que las modificaciones que inevitablemente
+va a necesitar, sea una operación sencilla.
+Cuando la cohesión se respeta el equipo de desarrollo puede moverse rápidamente debido a que no tiene
+que buscar lógica en múltiples lugares, sino que solo en un único módulo.
+
+Mientras que \cite{percival2020architecture} indica que la cohesión es un indicador de que los componentes
+se apoyan entre sí, cada cual encajando como los engranajes de un reloj.
+Además de esto, alertan sobre el anti-patrón Bola de Barro: mientras la aplicación crece, si se es incapaz de
+prevenir el acoplamiento entre elementos que no tienen cohesión, el acoplamiento escalará de manera superlineal
+hasta que ya no se pueda modificar efectivamente el sistema.
+
+
 \subsection{Despliegue}
 
 
@@ -213,55 +263,60 @@ servicio de manera tal que no dependa de ningún otro servicio.
 Esto permite que sea posible el llevar a cabo escalabilidad selectiva o bajo demanda.
 
 
-\subsection{Dominio de Negocio}
-
-De acuerdo con \cite{bosselmann2014domain} para definir un dominio de negocio de manera formal,
-no existe una ontología formal adecuada para los desarrolladores de software.
-Debido a esto solo se puede definir el dominio de negocio como lo siguiente: una descripción
-del valor que una compañía ofrece a uno o varios segmentos de clientes y la arquitectura de
-la firma y su red de socios para crear, publicitar y entregar su valor y capital relacional,
-con el fin de generar flujos de ingresos rentables y sostenibles.
-
-Por su parte \cite{heidari2021ontology} definen al dominio de negocio como las esferas específicas
-para las soluciones orientadas a negocios.
-El concepto se refiere a los aspectos en el mundo real de la solución ofrecida por el negocio o empresa.
-Para los desarrolladores, el dominio de negocio indica los requerimientos y los criterios de aceptación
-para el sistema a desarrollar.
-Estos criterios pueden indicar un nivel alto de segregación para diferentes áreas.
-
-Según \cite{khononov2021learning} un dominio de negocio define el principal área de actividad de
-la empresa. En general es el servicio que la empresa provee a sus clientes.
-Una empresa puede operar en múltiples dominios de negocio.
-
-\subsection{Diseño Guiado por el Dominio}
-
-El término ``diseño guiado por el dominio'' fue acuñado por \cite{evans2004domain}, en su trabajo
-indica los tres componentes del DDD:
-
-\begin{enumerate}[a.]
-  \item \textbf{El modelo y el núcleo del diseño se dan forma mutuamente.}
-    Es el enlace entre el modelo y la implementación que hace que el modelo sea relevante y asegura que el
-    análisis que se le hizo aplica al producto final.
-  \item \textbf{El modelo es la columna vertebral del lenguaje utilizado por todos los miembros del equipo.}
-    Debido al vínculo entre modelo e implementación, los desarrolladores pueden hablar acerca del
-    programa en este lenguaje, esto con el fin de poder hablar con los expertos del dominio sin
-    necesidad de traducción.
-  \item \textbf{El modelo es conocimiento destilado.}
-    El modelo es la forma de estructurar conocimiento del dominio acordado por el equipo.
-\end{enumerate}
-
-Según \cite{percival2020architecture} el Diseño guiado por el dominio (DDD por sus siglas en inglés)
-hace que los practicantes centren sus esfuerzos construyendo un buen modelo del dominio del negocio.
-Básicamente DDD indica que lo más importante del software es que provee un modelo útil de un problema,
-si ese modelo es correcto, entonces el software entregará valor.
-En el caso contrario, la aplicación se vuelve un obstáculo.
-
 \subsection{Escalabilidad}
 
+De acuerdo con \cite{rodger2017tao} la escalabilidad es una necesidad para sistemas de alto rendimiento.
+En la etapa de su diseño es necesario utilizar métodos de escalabilidad del tipo "mantenimiento casero"
+(servidores de proxy).
+De la misma manera indica que en un acercamiento tradicional ocurre que mientras más se mejore la 
+escalabilidad, la latencia va a empeorar a menos que se utilicen máquinas más poderosas y costosas,
+por lo cual es necesario hacer un compromiso para tener estos dos atributos equilibrados.
 
-\subsection{Complejidad}
+Por su lado \cite{lehrig2015scalability}, define la escalabilidad como la habilidad de una capa
+de la nube de incrementar su capacidad expandiendo la cantidad de servicios de capas más bajas
+que consume.
+En términos prácticos significa que una aplicación mantiene sus metas de rendimiento incluso cuando
+la carga de trabajo incrementa (hasta cierto límite de carga).
 
 
-\subsection{Sistema Distribuido}
+\subsection{Fiabilidad}
 
-% \subsection{Integración continua}
+De acuerdo con \cite{humble2018accelerate}, tradicionalmente la fiabilidad define como el tiempo
+entre fallos del sistema.
+Sin embargo, con los sistemas y servicios de software modernos (muy cambiantes y de alta complejidad),
+los fallos son inevitables por lo cual una mejor definición sería: ¿qué tan rápido un servicio puede
+ser restaurado?
+La pregunta planteada es una mejor métrica de calidad del software moderno, además de estar más ajustada
+a la realidad del desarrollo de software actual.
+
+Según \cite{rodger2017tao}, la fiabilidad es la cantidad de peticiones exitosas divididos
+por la cantidad total de peticiones que los clientes hacen a un servidor.
+Es junto con este concepto que se habla de la tasa de fracaso.
+Por otro lado, Rodger menciona que en sistemas distribuidos la tasa de fracaso depende del
+componente menos confiable y de la fiabilidad de las redes.
+
+
+\subsection{Integración y Distribución Continuas}
+
+\cite{humble2018accelerate} indican que tal como la Programación Extrema (XP) prescribe técnicas prácticas,
+la evolución lógica de los marcos de trabajo ágiles prescriben más técnicas como habilitadores de
+distribución de software más frecuente, de mayor calidad y de menor riesgo.
+También hacen insistencia en que las técnicas practicas juegan un rol vital en la entrega de software de calidad.
+La integración continua es una necesidad del software moderno, debido a la forma de trabajo de equipos
+ágiles que trabajan en diferentes partes del software, a veces sobre el mismo módulo, estas prácticas
+hacen que gran parte del tiempo del proceso de desarrollo de software está en la integración
+de los diferentes cambios que diferentes equipos e individuos realizan al software.
+Debido a lo anterior mencionado, la Integración Continua se vuelve una necesidad.
+
+Para una mejor comprensión de qué es Distribución Continua se describen los siguientes cinco principios clave:
+
+\begin{itemize}
+  \item \textbf{Construir calidad en el sistema}
+  \item \textbf{Trabajo en pequeños lotes}
+  \item \textbf{Computadores hacen tareas repetitivas; las personas resuelven problemas}
+  \item \textbf{Perseguir la mejora continua implacablemente}
+  \item \textbf{Todos son responsables}
+\end{itemize}
+
+
+\subsection{Herramientas Para Facilitar la Adopción de Microservicios}
