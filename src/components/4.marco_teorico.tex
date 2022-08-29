@@ -310,13 +310,65 @@ Debido a lo anterior mencionado, la Integración Continua se vuelve una necesida
 
 Para una mejor comprensión de qué es Distribución Continua se describen los siguientes cinco principios clave:
 
-\begin{itemize}
-  \item \textbf{Construir calidad en el sistema}
+\begin{enumerate}[a.]
+  \item \textbf{Construir calidad en el sistema.}
+    En una cultura de Distribución Continua, se invierte en dar soporte al monitoreo de problemas
+    que pueden surgir del sistema para que puedan ser corregidas rápidamente cuando son baratas de
+    detectar y resolver, esto mediante el uso herramientas y personas.
   \item \textbf{Trabajo en pequeños lotes}
   \item \textbf{Computadores hacen tareas repetitivas; las personas resuelven problemas}
   \item \textbf{Perseguir la mejora continua implacablemente}
   \item \textbf{Todos son responsables}
-\end{itemize}
+\end{enumerate}
+
+De acuerdo con \cite{forsgren2019}, la integración y distribución continua es una práctica clave
+para hacer que el proceso de desarrollo de software sea confiable y eficiente.
+Si bien existen desafíos con implementar un proceso automático completo de integración y distribución
+continua, las ventajas que ofrece esta practica son suficientes para justificar la implementación.
+El tener el proceso de entrega automatizado hace que el proceso iterativo de desarrollo de software
+tenga más y mejor retroalimentación.
 
 
 \subsection{Herramientas Para Facilitar la Adopción de Microservicios}
+
+\subsubsection{\textit{Lenguajes de Scripting para la Automatización de Procesos}}
+
+Los procesos para poder desplegar un sistema distribuido de microservicios son demasiados como para que 
+un humano pueda repetir el proceso de manera confiable y veloz cada que se necesite desplegar un servicio.
+Este proceso suele estar plagado de sobreescribir variables de entorno, copiar repositorios remotos
+a un servidor, modificar los permisos de red, comprobar la integración de los servicios y un largo etcétera
+de tareas.
+Debido a esto, esta parte del proceso se automatiza siguiendo el principio de ``dejar el trabajo repetitivo
+a las máquinas, dejar la solución de problemas a los humanos''.
+
+Para esta automatización pueden usar diferentes lenguajes de programación para crear herramientas internas
+especializadas para la gestión interna del sistema.
+La lista de lenguajes más usados para este fin es:
+
+\begin{enumerate}[a.]
+  \item \textbf{Bash script.} Fácil interacción con los GNU-core-utils.
+  \item \textbf{Python.} Lenguaje interpretado sencillo de escribir y leer.
+  \item \textbf{Go.} Lenguaje compilado simple y de buen rendimiento.
+\end{enumerate}
+
+
+\subsubsection{\textit{Virtualización en Contenedores}}
+
+- Docker
+- LXC
+
+
+\subsubsection{\textit{Orquestración de Contenedores}}
+
+- Kubernetes
+- Docker Swarm
+
+
+\subsubsection{\textit{Herramientas de CI/CD}}
+ 
+\begin{itemize}
+  \item \textbf{Gitlab CI}
+  \item \textbf{Jenkins}
+  \item \textbf{Gihub Actions}
+  \item \textbf{Travis CI}
+\end{itemize}
