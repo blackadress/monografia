@@ -1,15 +1,7 @@
-\mysection{4}{MARCO TEÓRICO}
+% \mysection{4}{MARCO TEÓRICO}
+\section{MARCO TEÓRICO}
 
 \subsection{Antecedentes}
-
-% \subsection{Arquitectura Monolítica}
-%
-% Según \cite{dmitry2014micro} una aplicación monolítica puede ser
-%
-% \subsubsection{Ventajas de una Arquitectura Monolítica}
-%
-% \subsubsection{Desventajas de una Arquitectura de Monolítica}
-
 
 \subsection{Arquitectura de Microservicios}
 
@@ -93,11 +85,13 @@ es {\it muy grande}.
 
 Por su lado \cite{kleppmann2015kafka} menciona el cómo la filosofía UNIX influyó al diseño de la arquitectura
 de microservicios:
-\begin{itemize}
+\vspace{-1em}
+\begin{enumerate}[a.]
   \item Hacer que cada programa haga una cosa y que la haga bien.
   \item Hacer que los programas puedan trabajar juntos
   \item Hacer que los programas puedan mantener inputs de textos, porque es una interfaz universal
-\end{itemize}
+\end{enumerate}
+\vspace{-1em}
 
 Con respecto al tercer punto, en lugar de hacer las comunicaciones mediante {\it standard input},
 los microservicios se comunican mediante HTTP.
@@ -145,6 +139,7 @@ Una empresa puede operar en múltiples dominios de negocio.
 El término ``diseño guiado por el dominio'' fue acuñado por \cite{evans2004domain}, en su trabajo
 indica los tres componentes del DDD:
 
+\vspace{-1em}
 \begin{enumerate}[a.]
   \item \textbf{El modelo y el núcleo del diseño se dan forma mutuamente.}
     Es el enlace entre el modelo y la implementación que hace que el modelo sea relevante y asegura que el
@@ -156,6 +151,7 @@ indica los tres componentes del DDD:
   \item \textbf{El modelo es conocimiento destilado.}
     El modelo es la forma de estructurar conocimiento del dominio acordado por el equipo.
 \end{enumerate}
+\vspace{-1em}
 
 Prosiguiendo con su definición, Evans indica que la razón principal de ser del software es el
 resolver problemas relacionados con un dominio en específico para sus usuarios.
@@ -296,6 +292,50 @@ Por otro lado, Rodger menciona que en sistemas distribuidos la tasa de fracaso d
 componente menos confiable y de la fiabilidad de las redes.
 
 
+\subsection{Patrones de Diseño}
+
+Según \cite{cosmin2016patrones} los patrones de diseño son soluciones maduras y probadas que
+se encuentran al momento de desarrollar software.
+La forma más extendida de categorizarlos es según el propósito que cumplen: de creación, de comportamiento
+y estructurales.
+
+De acuerdo con \cite{lo2022architectural} un patrón de diseño es una solución reutilizable que puede
+ser aplicada a problemas comunes de la etapa del desarrollo de software.
+Dentro de estos patrones de diseño se encuentran los patrones de arquitectura que ofrecen soluciones
+arquitectónicas a problemas de alto nivel encontrados en la arquitectura general de la aplicación.
+
+\subsection{Patrón API Gateway}
+
+\cite{trebichavsky2021api} indica que el fin de este patrón es centralizar todas las solicitudes
+de los posibles múltiples clientes a los servicios.
+Un API Gateway es el encargado de recibir todas las solicitudes, llamar a los servicios necesarios
+y devolver la información solicitada por el cliente.
+Puede ser nada más que un proxy uno a uno o puede llamar a varios servicios para obtener los datos 
+requeridos.
+
+Por su lado \cite{tomic2022towards} menciona que este patrón nace de afrontar el problema común
+de implementar microservicios: la cantidad de APIs expuestas aumenta considerablemente la carga de trabajo
+tanto para los desarrolladores que mantienen las integraciones de las APIs como de los usuarios que
+tienen la necesidad de estar conscientes de demasiados endpoints de servicios.
+Debido a lo anterior mencionado, una arquitectura de microservicios debe incluir un módulo de 
+API gateway para aliviar estos problemas y proveer un único punto de conexión.
+  
+
+\subsection{Servidor Proxy}
+
+De acuerdo con \cite{wenceslao2022network} un servidor proxy tiene como característica primordial el ser
+un re-enviador de solicitudes.
+Es decir cuando llega una solicitud al servidor proxy, este debe tomar la información de dirección
+de la solicitud, reenviarla hacia el servicio correcto, esperar la respuesta y finalmente devolver
+dicha respuesta al cliente original.
+Además de la característica primordial, un servidor proxy puede mantener caché y puede filtrar solicitudes.
+
+Según \cite{agyekum2021proxy} los servidores proxy pueden ser aprovechados para hacer delegar
+diferentes funcionalidades tradicionales del cliente.
+Esto para tener un mayor control sobre la seguridad y fiabilidad de la aplicación.
+Además de los beneficios obtenidos de utilizar un servidor proxy para manejar la redirección
+de tráfico, puede dar beneficios de seguridad al ocultar recursos importantes del internet global.
+
 \subsection{Integración y Distribución Continuas}
 
 \cite{humble2018accelerate} indican que tal como la Programación Extrema (XP) prescribe técnicas prácticas,
@@ -310,16 +350,29 @@ Debido a lo anterior mencionado, la Integración Continua se vuelve una necesida
 
 Para una mejor comprensión de qué es Distribución Continua se describen los siguientes cinco principios clave:
 
+\vspace{-1em}
 \begin{enumerate}[a.]
   \item \textbf{Construir calidad en el sistema.}
     En una cultura de Distribución Continua, se invierte en dar soporte al monitoreo de problemas
     que pueden surgir del sistema para que puedan ser corregidas rápidamente cuando son baratas de
     detectar y resolver, esto mediante el uso herramientas y personas.
-  \item \textbf{Trabajo en pequeños lotes}
+  \item \textbf{Trabajo en lotes pequeños}
+    Al entregar lotes de trabajo que entregan resultados de negocio tangibles rápidamente,
+    las organizaciones obtienen valiosa retroalimentación y pueden ajustar el rumbo sobre la
+    marcha.
   \item \textbf{Computadores hacen tareas repetitivas; las personas resuelven problemas}
+    Si bien la inversión inicial en automatizar tareas repetitivas puede desalentar a las organizaciones,
+    el mayor beneficio que se obtiene es el liberar a personas para tomar tareas más valiosas resolviendo
+    problemas del negocio.
   \item \textbf{Perseguir la mejora continua implacablemente}
+    Se identificó que la característica más importante de equipos de alto rendimiento es que nunca
+    están satisfechos, siempre quieren mejorar sus procesos.
+    Las personas que tienen alto rendimiento hacen la mejora parte del día a día.
   \item \textbf{Todos son responsables}
+    El objetivo clave del nivel de administración es hacer que la organización pueda trabajar en conjunto
+    con transparencia para poder definir metas mensurables, factibles y oportunas para el producto.
 \end{enumerate}
+\vspace{-1em}
 
 De acuerdo con \cite{forsgren2019}, la integración y distribución continua es una práctica clave
 para hacer que el proceso de desarrollo de software sea confiable y eficiente.
@@ -345,30 +398,57 @@ Para esta automatización pueden usar diferentes lenguajes de programación para
 especializadas para la gestión interna del sistema.
 La lista de lenguajes más usados para este fin es:
 
+\vspace{-1em}
 \begin{enumerate}[a.]
-  \item \textbf{Bash script.} Fácil interacción con los GNU-core-utils.
-  \item \textbf{Python.} Lenguaje interpretado sencillo de escribir y leer.
-  \item \textbf{Go.} Lenguaje compilado simple y de buen rendimiento.
+  \item \textbf{Bash script.}
+    El usar este lenguaje trae muchas ventajas, entre las principales están: estar presente en todos
+    los sistemas basados en UNIX e interoperabilidad con los GNU-core-utils.
+  \item \textbf{Python.}
+    Lenguaje interpretado sencillo de escribir y leer.
+    Debido a esto un programador experimentado puede ser productivo inmediatamente al cambiar a este lenguaje.
+  \item \textbf{Go.}
+    Lenguaje compilado simple y de buen rendimiento.
+    El tiempo que toma un programador experimentado en ser ``productivo'' con Go es muy corto comparado con
+    lenguajes de rendimiento similar.
+    Este hecho sumado a su rendimiento y la librería principal hacen de Go un lenguaje muy atractivo
+    para los Ingenieros de Confiabilidad de Sitio (SRE).
 \end{enumerate}
+\vspace{-1em}
 
 
 \subsubsection{\textit{Virtualización en Contenedores}}
+De acuerdo con \cite{celesti2016exploring} a diferencia de tecnologías tradicionales de virtualización,
+los contenedores no requieren de un sistema operativo además de poder correr dentro de una Máquina Virtual.
+Los contenedores proveen de virtualización a nivel de Sistema Operativo aprovechando prestaciones del kernel
+para aislar procesos y definir límites de uso de sistema para recursos como CPU, memoria, dispositivos de
+entrada/salida.
 
-- Docker
-- LXC
+Las tecnologías de Contenedores más comunes son:
+\vspace{-1em}
+\begin{enumerate}[a.]
+  \item \textbf{Docker.}
+    Según \cite{celesti2016exploring} Docker ofrece una agilidad en desarrollo y ejecución de aplicaciones
+    en entornos de nube.
+    Ofrece la solución completa para una plataforma de contenedores.
+  \item \textbf{LXC.}
+    \cite{celesti2016exploring} indica que LXC (Linux Containers) son  similares a Máquinas Virtuales
+    en el hecho de que ambos poseen un Sistema Operativo completamente funcional.
+    Los LXC son agnósticos con respecto al sistema de archivos y por defecto almacenan data con estado.
+\end{enumerate}
+\vspace{-1em}
 
 
-\subsubsection{\textit{Orquestración de Contenedores}}
-
-- Kubernetes
-- Docker Swarm
-
-
-\subsubsection{\textit{Herramientas de CI/CD}}
- 
-\begin{itemize}
-  \item \textbf{Gitlab CI}
-  \item \textbf{Jenkins}
-  \item \textbf{Gihub Actions}
-  \item \textbf{Travis CI}
-\end{itemize}
+% \subsubsection{\textit{Orquestración de Contenedores}}
+%
+% - Kubernetes
+% - Docker Swarm
+%
+%
+% \subsubsection{\textit{Herramientas de CI/CD}}
+%  
+% \begin{itemize}
+%   \item \textbf{Gitlab CI}
+%   \item \textbf{Jenkins}
+%   \item \textbf{Gihub Actions}
+%   \item \textbf{Travis CI}
+% \end{itemize}
