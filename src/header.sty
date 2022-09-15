@@ -54,11 +54,15 @@
   \addcontentsline{toc}{section}{\numberline{}#1}
 }
 
-\newcommand{\mysection}[2]{
-  \setcounter{section}{#1}
-  \setcounter{subsection}{0}
-  \setcounter{subsubsection}{0}
-  {\bfseries\large\centerline{CAPÍTULO \rom{#1}}}
-  {\bfseries\large\centerline{#2}}
-  \addtocontents{toc}{{\protect\centering\bfseries{CAPÍTULO} \rom{#1}\par #2\par}}
+\newcommand{\mysection}[1] {
+  \section*{#1}
+  \addcontentsline{toc}{section}{\protect\numberline{}#1}%
 }
+
+% \newcommand{\mysection}[2]{
+%   \setcounter{section}{#1}
+%   \setcounter{subsection}{0}
+%   \setcounter{subsubsection}{0}
+%   {\bfseries\large\centerline{CAPÍTULO \rom{#1}}}
+%   {\bfseries\large\centerline{#2}}
+%   \addtocontents{toc}{{\protect\centering\bfseries{CAPÍTULO} \rom{#1}\par #2\par}}
