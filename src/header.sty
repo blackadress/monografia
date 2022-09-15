@@ -5,6 +5,7 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{fontspec}
   \setmainfont{Arial}
+\usepackage{subcaption}
 \usepackage{graphicx} 
 \usepackage{setspace}
 \usepackage{fancyhdr}
@@ -42,6 +43,26 @@
 
 \newcommand*{\rom}[1]{
   \MakeUppercase{\expandafter\@slowromancap\romannumeral #1@}
+}
+
+\DeclareCaptionLabelFormat{custom}
+{%
+      \textbf{#1 #2}
+}
+\DeclareCaptionLabelSeparator{custom}{\\}
+
+\DeclareCaptionFormat{custom}
+{%
+    #1 #2#3
+}
+
+\captionsetup
+{
+    format=custom,%
+    labelformat=custom,%
+    labelsep=custom,%
+    justification=RaggedRight,%
+    singlelinecheck=false,
 }
 
 \newcommand{\tituloIni}[1]{
