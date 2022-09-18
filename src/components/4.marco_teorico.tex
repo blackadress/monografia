@@ -133,6 +133,17 @@ Según \cite{khononov2021learning} un dominio de negocio define el principal ár
 la empresa. En general es el servicio que la empresa provee a sus clientes.
 Una empresa puede operar en múltiples dominios de negocio.
 
+\subsection{Sub-dominios}
+
+Según \cite{richardson2018microservices} Los sub-dominios de una organización se dividen en tres clases:
+núcleo, de soporte y genéricos.
+Los sub-dominios núcleo son las partes del dominio donde el retorno de inversión es el más grande y
+por lo tanto merece el enfoque más grande.
+Los sub-dominios de soporte son las partes del dominio fuertemente ligadas a los sub-dominios núcleo
+que si bien son importantes no son el núcleo del negocio.
+Los sub-dominios genéricos son partes que no forman parte crítica del negocio, estos sub-dominios
+pueden ser tercerizados sin repercutir en el valor que el negocio provee.
+
 
 \subsection{Diseño Guiado por el Dominio}
 
@@ -166,24 +177,57 @@ En el caso contrario, la aplicación se vuelve un obstáculo.
 
 \subsubsection{Análisis del Dominio}
 
+De acuerdo con \cite{bjorner2019domain} el análisis de dominio inicia con un entendimiento
+del dominio de negocio para obtener los requerimientos funcionales de la aplicación.
+Este proceso indica que hay que mapear todas las funciones del negocio junto con sus conexiones,
+para poder hacer esto es necesario un esfuerzo colaborativo entre los expertos del dominio, stakeholders
+y arquitectos de software.
+El fin de este proceso es encontrar sub-dominios para modelar de manera más granular el dominio del negocio.
 
 \subsubsection{Definir contextos delimitados}
+Según \cite{bjorner2019domain} los contextos delimitados son fronteras lógicas y de datos dentro de
+un mismo dominio.
+Los contextos delimitados no están necesariamente aislados los unos de los otros sino que
+usualmente interactúan entre sí.
 
+De acuerdo con \cite{evans2004domain} para mantener la integridad de un contexto delimitado cuando
+interactúa con otros es tener APIs definidas.
+Al tener APIs explícitas para que subsistemas se comuniquen entre sí, actualmente el estándar
+más utilizado son las REST APIs.
 
 \subsubsection{Identificar los microservicios}
 
+Según \cite{tyszberowicz2018identifying} uno de los retos más grandes diseñando la arquitectura
+de microservicios es encontrar una adecuada descomposición del sistema en microservicios.
+También indica que cada servicio debería tener un número limitado de responsabilidades,
+de preferencia solo una.
+Además la granularidad de los microservicios influyen en la calidad de servicio de la aplicación
+junto con el número de servicios.
 
 \subsection{Técnicas Utilizadas en el Diseño Guiado por el Dominio}
 
-\subsubsection{Cuadro de dominios}
+\subsubsection{Cuadro de Dominios}
 
-\subsubsection{Event Storming}
+De acuerdo con \cite{richardson2018microservices} los cuadros de dominio ayudan a visualizar
+la importancia estratégica de cada sub-dominio o capacidad de negocio en la arquitectura.
+Esto hace que se puedan tomar decisiones arquitecturales alineadas al modelo del negocio.
+El verdadero valor que tiene esta técnica son las conversaciones multidisciplinarias que desencadena.
+
+\subsubsection{EventStorming}
+
+Según \cite{brandolini2013introducing} el EventStorming es un formato de taller para la exploración
+colaborativa de dominios de negocio complejos.
+Para explorar el dominio se usa un lienzo horizontal largo y notas autoadhesivas codificadas por colores
+para identificar eventos, flujos de eventos, comandos, advertencias y problemas en el modelo del dominio.
+Luego de este proceso se pueden encontrar problemas a priorizar además de un diccionario de términos.
 
 \subsubsection{Lienzo de Contextos Delimitados}
 
-\subsection{Dominios}
-
-\subsubsection{Sub-dominios}
+De acuerdo con \cite{richardson2018microservices} el lienzo de contextos delimitados es una herramienta
+colaborativa para diseñar y documentar el diseño de un contexto delimitado.
+El lienzo guía durante el proceso de diseñar un contexto delimitado requiriendo que se consideren
+y se tomen decisiones acerca de los elementos clave de su diseño.
+Abarca puntos como nomenclatura, responsabilidades, dependencias e interfaces públicas.
 
 
 \subsection{Ley de Conway y La Importancia de la Comunicación}

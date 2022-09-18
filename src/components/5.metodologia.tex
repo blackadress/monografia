@@ -5,7 +5,7 @@ Para poder diseñar una arquitectura de microservicios efectiva, correcta y que 
 necesidades del negocio se propone una metodología iterativa que se compone de cinco etapas:
 
 
-\subsection{Identificar el dominio del negocio}
+\subsection{Identificar el Dominio del Negocio}
 
 Puede sonar como un axioma sin sentido, después de todo ¿qué negocio no sabe cuál es su dominio?
 Sin embargo muchos arquitectos expertos siempre aconsejan empezar por aquí debido a que si bien los
@@ -32,7 +32,7 @@ para el equipo de desarrollo.
 	\item Documentos internos de la empresa.
 \end{enumerate}
 
-\subsubsection*{Técnicas y herramientas}
+\subsubsection*{Técnicas y Herramientas}
 \begin{enumerate}[a.]
 	\item Reuniones multi-departamentales.
 	\item Revisión de documentos internos.
@@ -84,25 +84,11 @@ todo lo anterior mencionado.
 
 \subsubsection*{Técnicas y herramientas}
 \begin{enumerate}[a.]
-	\item Cuadros de dominios.
   \item Event storming
+	\item Cuadros de dominios.
 \end{enumerate}
 
-\subsubsection*{Ejemplo de la técnica cuadro de dominio}
-\vspace{1em}
-
-  \begin{figure}[H]
-    % \caption{\\\hspace{\textwidth} Ejemplo de un cuadro de dominio}
-    \caption{Ejemplo de un cuadro de dominio}
-    \centering
-    \includegraphics[width=0.90\textwidth]{src/assets/metodologia/cuadro_dominio}
-    \label{fig:cuadro_dominio}
-    \\
-    Nota: Gráfica de ejemplo de un cuadro de dominio. Elaboración propia.
-  \end{figure}
-
-
-\subsubsection*{Ejemplo de la técnica event storming}
+% \subsubsection*{Ejemplo de la técnica event storming}
 \vspace{1em}
 
   \begin{figure}[H]
@@ -117,6 +103,20 @@ todo lo anterior mencionado.
     Elaboración propia.
   \end{figure}
 
+% \subsubsection*{Ejemplo de la técnica cuadro de dominio}
+\vspace{1em}
+
+  \begin{figure}[H]
+    % \caption{\\\hspace{\textwidth} Ejemplo de un cuadro de dominio}
+    \caption{Ejemplo de un cuadro de dominio}
+    \centering
+    \includegraphics[width=0.90\textwidth]{src/assets/metodologia/cuadro_dominio}
+    \label{fig:cuadro_dominio}
+    \\
+    Nota: Gráfica de ejemplo de un cuadro de dominio. Elaboración propia.
+  \end{figure}
+
+
 \subsubsection*{Salidas}
 \begin{enumerate}[a.]
     \item Identificación de sub-dominios núcleo.
@@ -127,7 +127,7 @@ todo lo anterior mencionado.
 \end{enumerate}
 
 
-\subsubsection{Definir contextos delimitados}
+\subsubsection{Definir Contextos Delimitados}
 Luego de identificar los tres tipos de sub-dominios, ya se tiene una visión holística
 del sistema que se va a desarrollar pero el modelo de dominio resultante todavía no está
 lo suficientemente refinado como para iniciar el desarrollo del sistema.
@@ -166,7 +166,7 @@ estas dos oficinas por lo que hace que se puedan identificar los límites en el 
 encontrar los contextos delimitados.
 
 
-\subsubsection*{Ejemplo de la técnica de lienzo de contextos delimitados}
+% \subsubsection*{Ejemplo de la técnica de lienzo de contextos delimitados}
 \vspace{1em}
 
   \begin{figure}[H]
@@ -186,7 +186,7 @@ encontrar los contextos delimitados.
 \end{enumerate}
 
 
-\subsubsection{Identificar los microservicios}
+\subsubsection{Identificar los Microservicios}
 
 Ahora que ya se identificaron los contextos delimitados, ya se pueden identificar los microservicios
 juntos formarán nuestra aplicación.
@@ -194,12 +194,139 @@ La palabra clave en esta etapa es "identificar", para tener una arquitectura de 
 el despliegue independiente y respete principios de cohesión no se puede forzar definiciones sobre el
 dominio de negocio que ya existe, sino que se tienen que identificar y tienen que responder a la realidad.
 
-% TODO https://docs.microsoft.com/es-es/azure/architecture/microservices/model/microservice-boundaries
+Utilizando los contextos delimitados obtenidos con anterioridad se inicia el proceso de identificación
+de microservicios.
+En concreto, un microservicio no puede sobrepasar los límites impuestos por el contexto delimitado.
+Cada microservicio debe tener una única responsabilidad siguiendo el principio de responsabilidad única,
+que indica que un componente debe ser responsable de un solo usuario o stakeholder.
+
+Finalmente para definir nuestros microservicios se debe tener en cuenta los requerimientos no funcionales.
+Como factor más importante se debe tomar en cuenta el tamaño del equipo para cada microservicio, los tipos
+de datos y los requisitos de escalabilidad y fiabilidad de cada microservicio.
+
+\subsubsection*{Entradas}
+\begin{enumerate}[a.]
+  \item Contextos delimitados.
+  \item Relaciones de flujos de datos.
+\end{enumerate}
+
+\subsubsection*{Técnicas y herramientas}
+\begin{enumerate}[a.]
+  \item Análisis de contextos delimitados.
+  \item Análisis de requerimientos no funcionales.
+\end{enumerate}
+
+% \subsubsection*{Ejemplo de la técnica de análisis de contextos delimitados}
+\vspace{1em}
+\begin{figure}[H]
+  \caption{Ejemplo de análisis de contextos delimitados}
+  \begin{center}
+    \includegraphics[width=0.90\textwidth]{src/assets/metodologia/bounded_context}
+    \label{fig:bounded_context_example}
+  \end{center}
+  \textit{Nota:} Adaptado de \textit{BoundedContext}, de \cite{bounded} martinfowler.com (shorturl.at/aeHK9). CC-BY-SA-4.0.
+\end{figure}
+
+\subsubsection*{Salidas}
+\begin{enumerate}
+  \item Microservicios identificados.
+\end{enumerate}
 
 
+\subsection{Diseñar una API Gateway Como Punto de Entrada}
+Una vez se tengan los microservicios identificados se presenta otro problema que tiene que ver con
+la integración de los microservicios con sus clientes.
+En el mundo actual, una organización puede tener múltiples aplicaciones clientes que dependen
+de sus servicios backend. 
+El comunicar estos clientes con el microservicio capaz de responder a la solicitud enviada
+presenta la dificultad de mantener un registro de las direcciones hacia donde mandar las
+solicitudes HTTP.
 
-Entregables propuestos para esta etapa:
+Además de el problema de coordinar todos los puntos de entrada entre múltiples equipos,
+la granularidad de las APIs expuestas por los microservicios suelen ser diferentes
+a las necesidades específicas de cada cliente.
+Los microservicios suelen proveer interfaces muy granuladas por lo que es muy común que
+requieran interactuar con múltiples servicios para obtener la data requerida.
 
-\subsection{Crear un ApiGateway como punto de entrada a los servicios}
+Debido la complejidad de llamar múltiples servicios y procesar esta data en el terreno de usuario,
+se presenta la solución de un API gateway que provee de un único punto de entrada a la aplicación. 
+Con la implementación de un API gateway, los clientes solo tienen que tener identificados un solo
+dominio a donde mandar las solicitudes HTTP, además de que los endpoints expuestos por la API gateway
+pueden consolidar grupos de servicios dando respuestas específicas a solicitudes de clientes.
 
-\subsection{Aseguramiento de la calidad}
+En resumen la implementación de una API gateway simplifica la comunicación con los posibles clientes
+de la aplicación.
+La desventaja de esta solución está en la complejidad de la capa de comunicación.
+Debido a que es posible consolidar varios servicios en un solo endpoint, es muy probable
+que la aplicación vaya a tener duplicidad accidental entre endpoints.
+Para mitigar estos problemas se sugiere en primera instancia utilizar herramientas de
+análisis estático o dividir la API gateway por cliente.
+
+
+\subsubsection*{Entradas}
+\begin{enumerate}[a.]
+  \item Microservicios identificados.
+\end{enumerate}
+
+\subsubsection*{Técnicas y herramientas}
+\begin{enumerate}[a.]
+  \item Análisis documental de los requerimientos de data de aplicaciones cliente.
+  \item Reuniones con los equipos encargados de las aplicaciones cliente.
+\end{enumerate}
+
+\subsubsection*{Salidas}
+\begin{enumerate}
+  \item Diseño de alto nivel del API gateway
+\end{enumerate}
+
+% \subsubsection*{Ejemplo del diseño de una API gateway}
+\vspace{1em}
+\begin{figure}[H]
+  \caption{Ejemplo de diseño de una API gateway}
+  \begin{center}
+    \includegraphics[width=0.90\textwidth]{src/assets/metodologia/apigateway}
+    \label{fig:api_gateway}
+  \end{center}
+  \textit{Nota:} Adaptado de \textit{Microservices patterns> with examples in Java}, de \cite{richardson2018microservices}
+  (p. 226). CC-BY-SA-4.0.
+\end{figure}
+
+% \subsubsection*{Ejemplo del diseño de API gateways divididas por cliente}
+\vspace{1em}
+\begin{figure}[H]
+  \caption{Ejemplo de diseño de una API gateways divididas por clientes}
+  \begin{center}
+    \includegraphics[width=0.90\textwidth]{src/assets/metodologia/apigateway_cliente}
+    \label{fig:api_gateway_cliente}
+  \end{center}
+  \textit{Nota:} Adaptado de \textit{Microservices patterns: with examples in Java}, de \cite{richardson2018microservices}
+  (p. 41). CC-BY-SA-4.0.
+\end{figure}
+
+\subsection{Retrospectiva}
+
+Debido a que el proceso de diseño es un proceso iterativo, para poder identificar problemas
+y posibles puntos de mejora para la siguiente iteración.
+El fin de la retrospectiva es la mejora continua del proceso que a su vez mejora los productos
+de seguir el proceso.
+
+Este paso final es parecido a una retrospectiva Scrum y debido a esto es algo familiar para
+el equipo de desarrollo por lo cual su implantación no debería conllevar problemas mayores.
+
+Al finalizar este paso, se inicia nuevamente el proceso haciendo que la arquitectura
+mejore con cada iteración.
+
+\subsubsection*{Entradas}
+No aplica, se hace un repaso general de el proceso acabado
+
+\subsubsection*{Técnicas y herramientas}
+\begin{enumerate}[a.]
+  \item Reunión de retrospectiva.
+  \item Lluvia de ideas.
+\end{enumerate}
+
+\subsubsection*{Salidas}
+\begin{enumerate}
+  \item Debilidades identificadas.
+  \item Puntos a mejorar.
+\end{enumerate}
