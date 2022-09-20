@@ -1,0 +1,292 @@
+diff --git a/index.tex b/index.tex
+index b87698d..64af9a2 100644
+--- a/index.tex
++++ b/index.tex
+@@ -1,4 +1,5 @@
+-\documentclass[11pt]{article}
++% \documentclass[11pt]{article}
++\documentclass[man]{apa7}
+ 
+ \usepackage{./src/header}
+ 
+@@ -8,12 +9,15 @@
+ \input{src/components/0.caratula}
+ \newpage
+ 
+-\begin{singlespace}
++% \begin{singlespace}
++{\setstretch{0.0}
+   \pagenumbering{roman}
+   \setcounter{page}{2}
+   \tableofcontents
++  \listoffigures
+   \newpage
+-\end{singlespace}
++  }
++% \end{singlespace}
+ 
+ % \raggedright
+ \pagenumbering{arabic}
+diff --git a/src/components/1.introduccion.tex b/src/components/1.introduccion.tex
+index e1fd4fd..7d05e54 100644
+--- a/src/components/1.introduccion.tex
++++ b/src/components/1.introduccion.tex
+@@ -1,6 +1,24 @@
+-% \mysection{1}{INTRODUCCIÓN}
+-\section{INTRODUCCIÓN}
++\mysection{INTRODUCCIÓN}
++% \section{INTRODUCCIÓN}
+ 
+-introduccion
++En la actualidad los requerimientos de los sistemas han cambiado.
++Cada vez más las empresas tienen la necesidad de procesar más y más data que sistemas de
++una arquitectura monolítica no pueden atender de manera eficiente debido a las restricciones
++de escalabilidad vertical y del tamaño de los equipos que mantienen estas aplicaciones.
++
++Para afrontar estos nuevos retos en la ingeniería de software, nacieron diferentes herramientas
++y disciplinas para poder manejar sistemas distribuidos capaces de escalar horizontalmente con costos
++de infraestructura más flexibles.
++
++En este contexto, la arquitectura de microservicios se consolida como la respuesta a necesidades
++de escalabilidad, fiabilidad y despliegue independiente que se exige de sistemas modernos.
++Además de los beneficios antes mencionados, los microservicios hacen que la organización de equipos
++sea más efectiva, pudiendo organizar múltiples equipos ágiles multidisciplinarios para atender
++todas las necesidades que el dominio del negocio pueda requerir.
++
++La motivación detrás de esta monografía es por la falta de una guía completa de cómo
++organizar una aplicación en microservicios.
++Debido a esta fragmentación de la información se hace la revisión sistemática de
++la literatura para poder tener un panorama claro del cómo plantear una arquitectura de microservicios.
+ 
+ \newpage
+diff --git a/src/components/2.justificacion.tex b/src/components/2.justificacion.tex
+index 1cdfcbc..a4ac3e3 100644
+--- a/src/components/2.justificacion.tex
++++ b/src/components/2.justificacion.tex
+@@ -1,6 +1,4 @@
+-% \mysection{2}{JUSTIFICACIÓN}
+-\section{JUSTIFICACIÓN}
+-
+-\subsection{Variables}
++\mysection{JUSTIFICACIÓN}
++% \section{JUSTIFICACIÓN}
+ 
+ \newpage
+diff --git a/src/components/4.marco_teorico.tex b/src/components/4.marco_teorico.tex
+index 36a6ff7..fd09121 100644
+--- a/src/components/4.marco_teorico.tex
++++ b/src/components/4.marco_teorico.tex
+@@ -164,6 +164,21 @@ si ese modelo es correcto, entonces el software entregará valor.
+ En el caso contrario, la aplicación se vuelve un obstáculo.
+ 
+ 
++\subsubsection{Análisis del Dominio}
++
++
++\subsubsection{Definir contextos delimitados}
++
++
++\subsubsection{Definir entidades, agregados y servicios}
++
++
++\subsubsection{Identificar los microservicios}
++
++\subsection{Dominios}
++
++\subsubsection{Sub-dominios}
++
+ \subsection{Ley de Conway y La Importancia de la Comunicación}
+ 
+ Existen patrones en las arquitecturas utilizadas por cada organización, estas observaciones
+@@ -384,7 +399,7 @@ tenga más y mejor retroalimentación.
+ 
+ \subsection{Herramientas Para Facilitar la Adopción de Microservicios}
+ 
+-\subsubsection{\textit{Lenguajes de Scripting para la Automatización de Procesos}}
++\subsubsection{Lenguajes de Scripting para la Automatización de Procesos}
+ 
+ Los procesos para poder desplegar un sistema distribuido de microservicios son demasiados como para que 
+ un humano pueda repetir el proceso de manera confiable y veloz cada que se necesite desplegar un servicio.
+@@ -416,7 +431,7 @@ La lista de lenguajes más usados para este fin es:
+ \vspace{-1em}
+ 
+ 
+-\subsubsection{\textit{Virtualización en Contenedores}}
++\subsubsection{Virtualización en Contenedores}
+ De acuerdo con \cite{celesti2016exploring} a diferencia de tecnologías tradicionales de virtualización,
+ los contenedores no requieren de un sistema operativo además de poder correr dentro de una Máquina Virtual.
+ Los contenedores proveen de virtualización a nivel de Sistema Operativo aprovechando prestaciones del kernel
+diff --git a/src/components/5.metodologia.tex b/src/components/5.metodologia.tex
+index c8e7965..f422520 100644
+--- a/src/components/5.metodologia.tex
++++ b/src/components/5.metodologia.tex
+@@ -1,2 +1,109 @@
+ % \mysection{5}{METODOLOGÍA}
+ \section{METODOLOGÍA}
++
++Para poder diseñar una arquitectura de microservicios efectiva, correcta y que responda a las
++necesidades del negocio se propone una metodología iterativa que se compone de cinco etapas:
++
++
++\subsection{Identificar el dominio del negocio}
++
++Puede sonar como un axioma sin sentido, después de todo ¿qué negocio no sabe cuál es su dominio?
++Sin embargo muchos arquitectos expertos siempre aconsejan empezar por aquí debido a que si bien los
++expertos del dominio conocen la parte de negocio en la cual se desenvuelven, es altamente probable
++que no conozcan los detalles del cómo funciona el negocio fuera de sus actividades cotidianas.
++
++En concreto, un empleado del departamento de ventas puede conocer muy bien sus responsabilidades
++y funciones dentro del flujo de ventas.
++Además conoce relativamente bien las responsabilidades y funciones de los departamentos con los que más
++interacción tiene (para este ejemplo almacén).
++Sin embargo no conoce de los detalles de las funciones que estos otros departamentos cumplen, específicamente
++no conoce de la cantidad exacta de productos que existen físicamente en almacén, no conoce los horarios
++de reaprovisionamiento, no sabe que desde la semana pasada almacén tiene un nuevo vehículo que hará que
++el trabajo sea más rápido.
++
++El escenario mencionado se repite departamento a departamento, unidad de trabajo a unidad de trabajo
++a lo largo y ancho de toda la organización.
++Es debido a esto que es probable que la organización no tenga en claro específicamente qué acciones
++son las que entregan valor y por lo tanto identificar el dominio del negocio debe ser el punto de inicio
++para el equipo de desarrollo.
++
++\subsubsection*{Entradas}
++\begin{enumerate}[a.]
++	\item Documentos internos de la empresa.
++\end{enumerate}
++
++\subsubsection*{Técnicas y herramientas}
++\begin{enumerate}[a.]
++	\item Reuniones multi-departamentales.
++	\item Revisión de documentos internos.
++	\item Seguimiento de flujo de producto.
++\end{enumerate}
++
++\subsubsection*{Salidas}
++En esta etapa no existen salidas concretas debido a que lo único que se quiere es que el equipo
++de desarrollo entienda en un nivel alto el dominio de la empresa u organización.
++
++\subsection{Diseño Guiado por el Dominio}
++
++En esta etapa utilizaremos las pautas que nos da el diseño basado en dominios.
++Se utiliza este marco porque ya fue probado múltiples veces en el mundo real para ir desde
++el nivel más alto de la aplicación hasta definir los detalles de organización de los microservicios.
++
++Debido a que se propone una metodología iterativa para refinar los microservicios, el marco de trabajo
++de diseño basado en dominios tiene la ventaja de que también está pensado como un proceso iterativo
++por lo cual es congruente a la metodología propuesta.
++
++\subsubsection{Análisis del Dominio}
++
++El equipo de desarrollo ya tiene una idea general de qué es el dominio del negocio, pero no tiene
++nada formal con lo que empezar a implementar la solución.
++Entonces lo que se debe hacer es crear un modelo del dominio.
++Este modelo permite ver el dominio del negocio de manera holística para poder identificar
++los sub-dominios núcleo, los subdominios de soporte y los subdominios genéricos.
++
++\subsubsection*{Entradas}
++\begin{enumerate}[a.]
++	\item Flujo de valor informal de la organización.
++\end{enumerate}
++
++\subsubsection*{Técnicas y herramientas}
++\begin{enumerate}[a.]
++	\item Event Storming
++	\item Cuadros de dominios.
++\end{enumerate}
++
++\subsubsection*{Salidas}
++\begin{enumerate}[a.]
++    \item Sub-dominios núcleo.
++    \item Sub-dominios de soporte.
++    \item Sub-dominios genéricos.
++\end{enumerate}
++
++\subsubsection*{Ejemplo de la técnica event storming}
++
++
++\subsubsection*{Ejemplo de la técnica cuadro de dominio}
++% \imgMetodologia{cuadro_dominio}{Ejemplo de un cuadro de dominio}
++
++  % \begin{figure}[htb]
++  %   \caption{\\\hspace{\textwidth} Ejemplo de un cuadro de dominio}
++  %   \centering
++  %   \includegraphics[width=14cm]{src/assets/metodologia/cuadro_dominio}
++  % \end{figure}
++\subsubsection{Definir contextos delimitados}
++
++
++\subsubsection{Definir entidades, agregados y servicios}
++
++
++\subsubsection{Identificar los microservicios}
++
++
++
++Entregables propuestos para esta etapa:
++
++\subsection{Crear un ApiGateway como punto de entrada a los servicios}
++
++\subsection{Aseguramiento de la calidad}
++
++\subsection{Iterar}
+diff --git a/src/header.sty b/src/header.sty
+index 5c5036e..3f2c5f3 100644
+--- a/src/header.sty
++++ b/src/header.sty
+@@ -1,6 +1,5 @@
+ \usepackage{geometry}
+ \usepackage{hyphenat}
+-\usepackage[hidelinks]{hyperref}
+ \usepackage[spanish]{babel}
+ \usepackage[shortlabels]{enumitem}
+ \usepackage{fontspec}
+@@ -19,7 +18,6 @@
+ % \addbibresource{refs.bib}
+ \usepackage{etoolbox}
+ \usepackage{setspace}
+-% \setstretch{2}
+ \doublespacing
+ 
+ \setlength{\emergencystretch}{3pt}
+@@ -30,35 +28,12 @@
+ \titlespacing\section{0pt}{0pt}{-1em}
+ \titlespacing\subsection{0pt}{0pt}{-1em}
+ \titlespacing\subsubsection{0pt}{0pt}{-1em}
+-% \renewcommand{\baselinestretch}{2}
+ 
+ % \AtBeginDocument{
+ %   \renewcommand{\contentsname}{CONTENIDOS}
+ %  }
+ \AtBeginEnvironment{quote}{\par\singlespacing\small}
+ 
+-\useshorthands{~}
+-\defineshorthand{~-}{\hyp{}}
+-
+ \newcommand*{\rom}[1]{
+   \MakeUppercase{\expandafter\@slowromancap\romannumeral #1@}
+ }
+-
+-\newcommand{\tituloIni}[1]{
+-  \begingroup
+-    \fontsize{14pt}{0pt}\selectfont
+-    \begin{center}
+-      \bfseries{\MakeUppercase{#1}}
+-    \end{center}
+-  \endgroup
+-  \addcontentsline{toc}{section}{\numberline{}#1}
+-}
+-
+-\newcommand{\mysection}[2]{
+-  \setcounter{section}{#1}
+-  \setcounter{subsection}{0}
+-  \setcounter{subsubsection}{0}
+-  {\bfseries\large\centerline{CAPÍTULO \rom{#1}}}
+-  {\bfseries\large\centerline{#2}}
+-  \addtocontents{toc}{{\protect\centering\bfseries{CAPÍTULO} \rom{#1}\par #2\par}}
+
+\newcommand{\mysection}[1] {
+  \section*{#1}
+  \addcontentsline{toc}{section}{\protect\numberline{}#1}%
+}
+
