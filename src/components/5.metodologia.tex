@@ -255,7 +255,8 @@ dominio a donde mandar las solicitudes HTTP, además de que los endpoints expues
 pueden consolidar grupos de servicios dando respuestas específicas a solicitudes de clientes.
 
 En resumen la implementación de una API gateway simplifica la comunicación con los posibles clientes
-de la aplicación.
+de la aplicación además de poder asegurar la fiabilidad de los servicios implementando
+una cola de solicitudes así como también repetir solicitudes en caso alguna de estas fallen.
 La desventaja de esta solución está en la complejidad de la capa de comunicación.
 Debido a que es posible consolidar varios servicios en un solo endpoint, es muy probable
 que la aplicación vaya a tener duplicidad accidental entre endpoints.

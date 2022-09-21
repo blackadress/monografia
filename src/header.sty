@@ -81,6 +81,9 @@
   \addcontentsline{toc}{section}{\protect\numberline{}#1}%
 }
 
+\renewcommand \thesection{\roman{section}}
+\renewcommand \thesubsection{\arabic{section}.\arabic{subsection}}
+
 % \newcommand{\mysection}[2]{
 %   \setcounter{section}{#1}
 %   \setcounter{subsection}{0}
